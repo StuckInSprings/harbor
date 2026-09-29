@@ -1,0 +1,125 @@
+/*
+  Harbor — visual system.
+
+  The metaphor is a nautical chart read at night, not a ship. Two rules follow:
+
+  1. Depth is structure. Panes sit at different soundings, and the deeper a
+     surface, the darker its blue-black. There are no dividers anywhere; a
+     change in depth is what separates things.
+  2. Status uses navigation-light colour, because at sea those hues already
+     carry exact meaning — green running, red failed, amber needs attention.
+
+  Quantities (tokens, cost, context) are set as bare mono numerals in faint
+  ink, the way soundings are printed on a chart. Never in pills or badges.
+*/
+
+:root {
+  /* soundings — deepest to shallowest */
+  --depth-5: #050b0e;
+  --depth-4: #080f14;
+  --depth-3: #142129;
+  --depth-2: #1c2d36;
+  --depth-1: #264049;
+  --shoal: #31535e;
+
+  --ink: #e4eef0;
+  --ink-dim: #a9bdc4;
+  --ink-faint: #7b929b;
+
+  /* harbour lights */
+  --beacon: #59c6dc;
+  --beacon-dim: #2b6b7a;
+  --starboard: #46be8a;
+  --port: #e4574c;
+  --cardinal: #e9b646;
+
+  /* chart paper — the navigator's own marks */
+  --paper: #292722;
+  --paper-edge: #3a362d;
+  --paper-ink: #e9e0ce;
+
+  --font-display: 'Iowan Old Style', Charter, Palatino, Georgia, serif;
+  /* Lexend for reading and MonoLisa for code where they are installed; the system's own otherwise. */
+  --font-ui: 'Lexend', -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+  --font-mono: 'MonoLisa', 'SF Mono', SFMono-Regular, Menlo, Monaco, monospace;
+
+  --row: 32px;
+  --radius: 6px;
+  --radius-lg: 10px;
+  --sidebar-w: 280px;
+  --inspector-w: 380px;
+
+  /* the type scale: five sizes for text, and the display sizes above them */
+  --text-xs: 10.5px;
+  --text-sm: 11.5px;
+  --text-md: 12.5px;
+  --text-base: 13px;
+  --text-lg: 15px;
+  --text-xl: 17px;
+
+  /* the spacing scale */
+  --space-1: 4px;
+  --space-1h: 6px;
+  --space-2: 8px;
+  --space-2h: 10px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+* { box-sizing: border-box; }
+
+/* Ligatures wherever code is set: MonoLisa's =>, !== and -> come from these two features. */
+code, pre, kbd, textarea.code__input { font-feature-settings: 'liga' 1, 'calt' 1; }
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  background: var(--depth-5);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+input, textarea { font: inherit; color: inherit; }
+
+:focus-visible {
+  outline: 1.5px solid var(--beacon);
+  outline-offset: 1px;
+  border-radius: 3px;
+}
+
+::selection { background: var(--beacon-dim); color: var(--ink); }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb {
+  background: var(--depth-1);
+  border: 3px solid transparent;
+  background-clip: content-box;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--shoal); background-clip: content-box; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* soundings: every number in Harbor is set this way */
+.sounding {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-faint);
+  letter-spacing: -0.01em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

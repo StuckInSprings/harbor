@@ -1,0 +1,38 @@
+# deps
+node_modules/
+
+# build output
+dist/
+out/
+*.app
+*.dmg
+
+# secrets — the API key lives in the macOS Keychain, never in a file.
+# this is belt-and-braces in case anything ever writes one.
+.env
+.env.*
+*.pem
+*.p12
+
+# local state — Harbor writes nothing into its own source tree,
+# but guard against it anyway
+*.db
+*.db-shm
+*.db-wal
+*.sqlite*
+
+# bundled embedding model weights (fetched on first run, ~130MB)
+models/
+
+# macOS
+.DS_Store
+
+# editor
+.vscode/
+.idea/
+
+# typescript incremental build state
+*.tsbuildinfo
+dist-next/
+build/icon.iconset/
+build/icon-preview.png

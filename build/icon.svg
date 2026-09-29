@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1c2d36"/>
+      <stop offset="1" stop-color="#080f14"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.36" r="0.5">
+      <stop offset="0" stop-color="#59c6dc" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#59c6dc" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- the macOS icon shape: 824 on a 1024 canvas, corner radius a fifth of it -->
+  <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#sea)"/>
+  <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#glow)"/>
+  <!-- the anchor, the same mark the app uses, drawn in the harbour light -->
+  <g fill="none" stroke="#59c6dc" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" transform="translate(512 512) scale(38) translate(-8 -8.4)">
+    <circle cx="8" cy="3.6" r="1.5"/>
+    <path d="M8 5.1v8.3M4.4 7.2h7.2M2.6 9.6a5.5 5.5 0 0 0 10.8 0"/>
+  </g>
+</svg>

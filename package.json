@@ -1,0 +1,96 @@
+{
+  "name": "harbor",
+  "version": "0.1.0",
+  "description": "Local chat interface and project workspace for OpenRouter models",
+  "main": "./out/main/index.js",
+  "author": "Samuel McMurtrie",
+  "private": true,
+  "scripts": {
+    "dev": "electron-vite dev",
+    "start": "electron-vite preview",
+    "build": "npm run typecheck && electron-vite build",
+    "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.web.json",
+    "dist": "npm run build && electron-builder --mac --arm64 --dir",
+    "postinstall": "electron-builder install-app-deps",
+    "test": "node test/run.cjs",
+    "lint": "eslint electron shared src",
+    "format": "prettier --write electron shared src test",
+    "format:check": "prettier --check electron shared src test"
+  },
+  "dependencies": {
+    "@anthropic-ai/sandbox-runtime": "^0.0.77",
+    "@huggingface/transformers": "^4.2.0",
+    "@modelcontextprotocol/sdk": "^1.30.1",
+    "@tiptap/extension-code-block-lowlight": "^3.31.3",
+    "@tiptap/extension-placeholder": "^3.31.3",
+    "@tiptap/markdown": "^3.31.3",
+    "@tiptap/react": "^3.31.3",
+    "@tiptap/starter-kit": "^3.31.3",
+    "better-sqlite3": "^13.0.3",
+    "sharp": "^0.34.5",
+    "sqlite-vec": "^0.1.9",
+    "unpdf": "^1.7.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/hast": "^3.0.5",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.1.0",
+    "electron": "^44.2.0",
+    "electron-builder": "^26.15.3",
+    "electron-vite": "^5.0.0",
+    "eslint": "^10.11.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "lowlight": "^3.3.0",
+    "prettier": "^3.9.9",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-markdown": "^10.1.0",
+    "rehype-highlight": "^7.0.2",
+    "remark-gfm": "^4.0.1",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.70.1",
+    "vite": "^7.1.0"
+  },
+  "build": {
+    "appId": "dev.samuelmcmurtrie.harbor",
+    "productName": "Harbor",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "out/**/*",
+      "package.json",
+      "!node_modules/onnxruntime-node/bin/napi-v6/linux/**",
+      "!node_modules/@anthropic-ai/sandbox-runtime/vendor/**",
+      "!node_modules/onnxruntime-node/bin/napi-v6/win32/**",
+      "!node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/**",
+      "!node_modules/better-sqlite3/prebuilds/linux-*.node",
+      "!node_modules/better-sqlite3/prebuilds/linuxmusl-*.node",
+      "!node_modules/better-sqlite3/prebuilds/win32-*.node",
+      "!node_modules/better-sqlite3/prebuilds/darwin-x64.node",
+      "!node_modules/@img/sharp-linux*/**",
+      "!node_modules/@img/sharp-libvips-linux*/**",
+      "!node_modules/@img/sharp-win32*/**",
+      "!node_modules/@img/sharp-darwin-x64/**",
+      "!node_modules/@img/sharp-libvips-darwin-x64/**",
+      "!node_modules/sqlite-vec-linux*/**",
+      "!node_modules/sqlite-vec-win32*/**",
+      "!node_modules/sqlite-vec-darwin-x64/**",
+      "!node_modules/onnxruntime-web/**",
+      "!node_modules/better-sqlite3/deps/**",
+      "!node_modules/better-sqlite3/src/**",
+      "!node_modules/better-sqlite3/build/**"
+    ],
+    "electronLanguages": [
+      "en"
+    ],
+    "mac": {
+      "target": "dir",
+      "category": "public.app-category.developer-tools",
+      "hardenedRuntime": false
+    }
+  }
+}
